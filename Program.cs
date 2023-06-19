@@ -1,6 +1,8 @@
+using MediaItemsServer.Helpers;
 using MediaItemsServer.Interfaces;
 using MediaItemsServer.Middleware;
 using MediaItemsServer.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IMediaItemsService, MediaItemsService>();
+builder.Services.AddSingleton<IUserService, UserService>();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtToken();
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -21,8 +27,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseMiddleware<HeadersMiddleware>();
-
+app.UseHeaders();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

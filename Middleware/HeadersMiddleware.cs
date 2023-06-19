@@ -20,4 +20,14 @@ namespace MediaItemsServer.Middleware
             return _next(httpContext);
         }
     }
+
+    public static class HeadersMiddlewareExtensions
+    {
+        public static IApplicationBuilder UseHeaders(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<HeadersMiddleware>();
+
+            return app;
+        }
+    }
 }
