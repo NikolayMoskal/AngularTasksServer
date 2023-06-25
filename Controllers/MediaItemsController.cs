@@ -1,5 +1,6 @@
 ﻿using MediaItemsServer.Interfaces;
 using MediaItemsServer.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,6 @@ namespace MediaItemsServer.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public IList<MediaItem> GetAll()
         {
             return _mediaItemsService.GetAll();

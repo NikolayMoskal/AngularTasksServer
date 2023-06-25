@@ -8,15 +8,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddMvcCore()
+    .AddApiExplorer()
+    .AddCors()
+    .AddDataAnnotations()
+    .AddFormatterMappings();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSingleton<DbContext>();
 builder.Services.AddSingleton<IMediaItemsService, MediaItemsService>();
 builder.Services.AddSingleton<IUserService, UserService>();
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtToken();
-builder.Services.AddAuthorization();
+builder.Services.AddSingleton<IRoleService, RoleService>();
 
 var app = builder.Build();
 
@@ -28,8 +31,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHeaders();
-app.UseAuthentication();
-app.UseAuthorization();
+app.UseAuthentication(new List<string> { Consts.AdministratorRole });
 
 app.MapControllers();
 

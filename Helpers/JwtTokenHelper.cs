@@ -2,7 +2,6 @@
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using MediaItemsServer.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.IdentityModel.Tokens;
 
@@ -13,16 +12,12 @@ namespace MediaItemsServer.Helpers
         public static readonly int LifetimeSeconds = 10 * 60;
         public static readonly string Issuer = "AngularTasks";
         public static readonly string Audience = "AngularTasks";
-        private static readonly string SigningKeyText = "AngularTasksKey";
+        private static readonly string SigningKeyText = "AngularTasksTooStrongPasswordForAuthentication";
         private static readonly SecurityKey SigningKey =
             new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SigningKeyText));
 
-        public static string GenerateBearerToken(User user)
+        public static string GenerateBearerToken(IEnumerable<Claim> claims)
         {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.Name)
-            };
             var token = new JwtSecurityToken(
                 issuer: Issuer,
                 audience: Audience,
@@ -42,6 +37,18 @@ namespace MediaItemsServer.Helpers
             return Convert.ToBase64String(bytes);
         }
 
+        public static ClaimsPrincipal GetPrincipal(string accessToken)
+        {
+            return ParseTokenInternal(accessToken, out _);
+        }
+
+        public static bool IsTokenExpired(string accessToken)
+        {
+            ParseTokenInternal(accessToken, out var token);
+
+            return token.ValidTo < DateTime.UtcNow;
+        }
+
         public static AuthenticationBuilder AddJwtToken(this AuthenticationBuilder app)
         {
             app.AddJwtBearer(options => options.TokenValidationParameters =
@@ -57,6 +64,26 @@ namespace MediaItemsServer.Helpers
                 });
 
             return app;
+        }
+
+        private static ClaimsPrincipal ParseTokenInternal(string accessToken, out JwtSecurityToken token)
+        {
+            token = null;
+            var principal = new JwtSecurityTokenHandler().ValidateToken(accessToken, new TokenValidationParameters
+            {
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateLifetime = false,
+                IssuerSigningKey = SigningKey
+            }, out var securityToken);
+
+            if (securityToken is not JwtSecurityToken jwtSecurityToken ||
+                !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+                throw new SecurityTokenException("Invalid token provided");
+
+            token = jwtSecurityToken;
+
+            return principal;
         }
     }
 }
