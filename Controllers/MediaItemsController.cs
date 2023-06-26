@@ -1,13 +1,14 @@
-﻿using MediaItemsServer.Interfaces;
+﻿using MediaItemsServer.Helpers;
+using MediaItemsServer.Interfaces;
 using MediaItemsServer.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MediaItemsServer.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/media/[action]")]
     [ApiController]
+    [Authorize(Roles = Consts.User)]
     public class MediaItemsController : ControllerBase
     {
         private readonly IMediaItemsService _mediaItemsService;
@@ -18,24 +19,27 @@ namespace MediaItemsServer.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IList<MediaItem> GetAll()
         {
             return _mediaItemsService.GetAll();
         }
 
-        [HttpGet("{id}")]
-        public MediaItem GetById(string id)
+        [HttpGet]
+        public MediaItem Get([FromQuery] string id)
         {
             return _mediaItemsService.GetById(id);
         }
 
         [HttpPost]
+        [Authorize(Roles = Consts.Administrator)]
         public void SaveOrUpdate(MediaItem item)
         {
             _mediaItemsService.SaveOrUpdate(item);
         }
 
         [HttpDelete]
+        [Authorize(Roles = Consts.Administrator)]
         public void Delete(string id)
         {
             _mediaItemsService.Delete(id);

@@ -22,7 +22,8 @@ namespace MediaItemsServer.Services
 
         public void SaveOrUpdate(MediaItem item)
         {
-            var items = GetAll();
+            var items = GetAll().ToList();
+            items.RemoveAll(x => x.Id == item.Id);
             items.Add(item);
 
             using var streamWriter = new StreamWriter("media-items.json", new FileStreamOptions

@@ -3,6 +3,12 @@
     public sealed class Consts
     {
         public const string AuthRoute = "auth";
-        public const string AdministratorRole = "administrator";
+
+        #region Role Names
+
+        public const string Administrator = "Administrator";
+        public const string User = "User";
+
+        #endregion
     }
 }

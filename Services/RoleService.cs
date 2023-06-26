@@ -17,8 +17,8 @@ namespace MediaItemsServer.Services
         public IList<UserRole> GetRolesForUser(string userName)
         {
             return _dbContext.Users.Where(x => x.Name == userName)
-                .Join(_dbContext.SecurityRelations, user => user.Id, relation => relation.ParentId, (user, relation) => relation)
-                .Join(Roles, relation => relation.ChildId, role => role.Id, (relation, role) => role)
+                .Join(_dbContext.SecurityRelations, user => user.Id, relation => relation.ChildId, (user, relation) => relation)
+                .Join(Roles, relation => relation.ParentId, role => role.Id, (relation, role) => role)
                 .ToList();
         }
     }
