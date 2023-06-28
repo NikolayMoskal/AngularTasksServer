@@ -46,7 +46,7 @@ namespace MediaItemsServer.Controllers
             {
                 access_token = bearerToken,
                 refresh_token = refreshToken,
-                expires_in = JwtTokenHelper.LifetimeSeconds
+                expires_in = new DateTimeOffset(DateTime.UtcNow).AddSeconds(JwtTokenHelper.LifetimeSeconds).ToUnixTimeSeconds()
             });
         }
 
@@ -85,7 +85,7 @@ namespace MediaItemsServer.Controllers
             {
                 access_token = bearerToken,
                 refresh_token = refreshToken,
-                expires_in = JwtTokenHelper.LifetimeSeconds
+                expires_in = new DateTimeOffset(DateTime.UtcNow).AddSeconds(JwtTokenHelper.LifetimeSeconds).ToUnixTimeSeconds()
             });
         }
     }
