@@ -9,7 +9,8 @@ namespace MediaItemsServer.Helpers
 {
     public static class JwtTokenHelper
     {
-        public static readonly int LifetimeSeconds = 10 * 60;
+        public static readonly int BearerTokenLifetimeSeconds = 2 * 60;
+        public static readonly int RefreshTokenLifetimeDays = 1;
         public static readonly string Issuer = "AngularTasks";
         public static readonly string Audience = "AngularTasks";
         private static readonly string SigningKeyText = "AngularTasksTooStrongPasswordForAuthentication";
@@ -22,7 +23,7 @@ namespace MediaItemsServer.Helpers
                 issuer: Issuer,
                 audience: Audience,
                 claims: claims,
-                expires: DateTime.UtcNow.AddSeconds(LifetimeSeconds),
+                expires: DateTime.UtcNow.AddSeconds(BearerTokenLifetimeSeconds),
                 signingCredentials: new SigningCredentials(SigningKey, SecurityAlgorithms.HmacSha256));
 
             return new JwtSecurityTokenHandler().WriteToken(token);

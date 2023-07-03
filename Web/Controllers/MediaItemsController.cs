@@ -1,15 +1,14 @@
 ﻿using MediaItemsServer.Helpers;
-using MediaItemsServer.Interfaces;
 using MediaItemsServer.Models;
+using MediaItemsServer.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MediaItemsServer.Controllers
 {
     [Route("api/media/[action]")]
-    [ApiController]
     [Authorize(Roles = Consts.User)]
-    public class MediaItemsController : ControllerBase
+    public class MediaItemsController : CustomController
     {
         private readonly IMediaItemsService _mediaItemsService;
 

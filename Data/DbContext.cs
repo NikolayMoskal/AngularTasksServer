@@ -1,14 +1,13 @@
-﻿using MediaItemsServer.Helpers;
-using MediaItemsServer.Models;
+﻿using MediaItemsServer.Models;
 
-namespace MediaItemsServer.Services
+namespace MediaItemsServer.Data
 {
     public sealed class DbContext
     {
         public IList<UserRole> Roles => new List<UserRole>
         {
-            new UserRole { Id = 1, RoleName = Consts.Administrator },
-            new UserRole { Id = 2, RoleName = Consts.User }
+            new UserRole { Id = 1, RoleName = "administrator" },
+            new UserRole { Id = 2, RoleName = "user" }
         };
 
         public IList<User> Users => new List<User>

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.18" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.19" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AspNetExtensions\MediaItemsServer.AspNetExtensions\MediaItemsServer.AspNetExtensions.csproj" />
+    <ProjectReference Include="..\Models\MediaItemsServer.Models.csproj" />
+    <ProjectReference Include="..\Services.Contracts\MediaItemsServer.Services.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

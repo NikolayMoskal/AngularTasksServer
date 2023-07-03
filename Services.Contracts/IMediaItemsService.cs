@@ -1,6 +1,6 @@
 ﻿using MediaItemsServer.Models;
 
-namespace MediaItemsServer.Interfaces
+namespace MediaItemsServer.Services.Contracts
 {
     public interface IMediaItemsService
     {

@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaItemsServer", "MediaItemsServer.csproj", "{5170AF41-2F47-4743-B9AE-DBCB3C3DA0CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaItemsServer", "Web\MediaItemsServer.csproj", "{5170AF41-2F47-4743-B9AE-DBCB3C3DA0CD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaItemsServer.Data", "Data\MediaItemsServer.Data.csproj", "{397AB93C-1FE9-4C97-8859-6F58522CE123}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaItemsServer.Data.Contracts", "Data.Contracts\MediaItemsServer.Data.Contracts.csproj", "{4C58E035-DC8E-4A5F-95DA-9AEB944EC3F5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaItemsServer.Models", "Models\MediaItemsServer.Models.csproj", "{6371A828-DDCE-43D0-86A7-22A5E25B06AA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaItemsServer.AspNetExtensions", "AspNetExtensions\MediaItemsServer.AspNetExtensions\MediaItemsServer.AspNetExtensions.csproj", "{139A0C96-EEA0-42B3-842D-D7552655951E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaItemsServer.Services", "Services\MediaItemsServer.Services.csproj", "{7E158A78-4114-403C-B412-8CBD28C7B08B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaItemsServer.Services.Contracts", "Services.Contracts\MediaItemsServer.Services.Contracts.csproj", "{D15AF631-37FB-4DF6-889D-DC782B20FD5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +27,30 @@ Global
 		{5170AF41-2F47-4743-B9AE-DBCB3C3DA0CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5170AF41-2F47-4743-B9AE-DBCB3C3DA0CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5170AF41-2F47-4743-B9AE-DBCB3C3DA0CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{397AB93C-1FE9-4C97-8859-6F58522CE123}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{397AB93C-1FE9-4C97-8859-6F58522CE123}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{397AB93C-1FE9-4C97-8859-6F58522CE123}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{397AB93C-1FE9-4C97-8859-6F58522CE123}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C58E035-DC8E-4A5F-95DA-9AEB944EC3F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C58E035-DC8E-4A5F-95DA-9AEB944EC3F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C58E035-DC8E-4A5F-95DA-9AEB944EC3F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C58E035-DC8E-4A5F-95DA-9AEB944EC3F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6371A828-DDCE-43D0-86A7-22A5E25B06AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6371A828-DDCE-43D0-86A7-22A5E25B06AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6371A828-DDCE-43D0-86A7-22A5E25B06AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6371A828-DDCE-43D0-86A7-22A5E25B06AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{139A0C96-EEA0-42B3-842D-D7552655951E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{139A0C96-EEA0-42B3-842D-D7552655951E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{139A0C96-EEA0-42B3-842D-D7552655951E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{139A0C96-EEA0-42B3-842D-D7552655951E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E158A78-4114-403C-B412-8CBD28C7B08B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E158A78-4114-403C-B412-8CBD28C7B08B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E158A78-4114-403C-B412-8CBD28C7B08B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E158A78-4114-403C-B412-8CBD28C7B08B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D15AF631-37FB-4DF6-889D-DC782B20FD5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D15AF631-37FB-4DF6-889D-DC782B20FD5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D15AF631-37FB-4DF6-889D-DC782B20FD5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D15AF631-37FB-4DF6-889D-DC782B20FD5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

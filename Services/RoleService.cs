@@ -1,25 +1,31 @@
-﻿using MediaItemsServer.Interfaces;
+﻿using MediaItemsServer.Data.Contracts;
 using MediaItemsServer.Models;
+using MediaItemsServer.Services.Contracts;
 
 namespace MediaItemsServer.Services
 {
     public class RoleService : IRoleService
     {
-        private readonly DbContext _dbContext;
+        private readonly IRoleRepository _roleRepository;
 
-        public RoleService(DbContext dbContext)
+        public RoleService(IRoleRepository roleRepository)
         {
-            _dbContext = dbContext;
+            _roleRepository = roleRepository;
         }
-
-        private IList<UserRole> Roles => _dbContext.Roles;
 
         public IList<UserRole> GetRolesForUser(string userName)
         {
-            return _dbContext.Users.Where(x => x.Name == userName)
-                .Join(_dbContext.SecurityRelations, user => user.Id, relation => relation.ChildId, (user, relation) => relation)
-                .Join(Roles, relation => relation.ParentId, role => role.Id, (relation, role) => role)
-                .ToList();
+            return _roleRepository.GetRolesForUser(userName);
+        }
+
+        public void Save(UserRole userRole)
+        {
+            _roleRepository.Save(userRole);
+        }
+
+        public void Delete(UserRole userRole)
+        {
+            _roleRepository.Delete(userRole);
         }
     }
 }
