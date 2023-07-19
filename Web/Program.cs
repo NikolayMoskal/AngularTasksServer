@@ -22,6 +22,12 @@ builder.Services
         options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     })
     .AddJwtToken();
+builder.Services.AddCors(options => options
+    .AddPolicy("AllowFromAngular",
+        policyBuilder => policyBuilder
+            .WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod()));
 
 var app = builder.Build();
 
@@ -32,8 +38,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowFromAngular");
 app.UseHttpsRedirection();
-app.UseHeaders();
 app.UseAuthentication();
 app.UseAuthorization();
 

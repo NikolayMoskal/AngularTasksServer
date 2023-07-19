@@ -2,6 +2,7 @@
 using MediaItemsServer.Helpers;
 using MediaItemsServer.Models;
 using MediaItemsServer.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MediaItemsServer.Controllers
@@ -126,6 +127,14 @@ namespace MediaItemsServer.Controllers
                 refresh_token = refreshToken,
                 expires_in = new DateTimeOffset(DateTime.UtcNow).AddSeconds(JwtTokenHelper.BearerTokenLifetimeSeconds).ToUnixTimeSeconds()
             });
+        }
+
+        [HttpGet]
+        [Route("roles/all")]
+        [Authorize(Roles = Consts.Administrator)]
+        public IActionResult GetAll()
+        {
+            return Json(_roleService.GetAll());
         }
     }
 }

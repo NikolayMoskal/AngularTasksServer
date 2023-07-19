@@ -1,4 +1,5 @@
-﻿using MediaItemsServer.Data.Contracts;
+﻿using System.Linq.Expressions;
+using MediaItemsServer.Data.Contracts;
 using MediaItemsServer.Models;
 using MediaItemsServer.Services.Contracts;
 
@@ -11,6 +12,11 @@ namespace MediaItemsServer.Services
         public RoleService(IRoleRepository roleRepository)
         {
             _roleRepository = roleRepository;
+        }
+
+        public IList<UserRole> GetAll(Expression<Func<UserRole, bool>> filter = null)
+        {
+            return _roleRepository.GetAll(filter);
         }
 
         public IList<UserRole> GetRolesForUser(string userName)

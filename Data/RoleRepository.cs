@@ -1,4 +1,5 @@
-﻿using MediaItemsServer.Data.Contracts;
+﻿using System.Linq.Expressions;
+using MediaItemsServer.Data.Contracts;
 using MediaItemsServer.Models;
 
 namespace MediaItemsServer.Data
@@ -14,6 +15,11 @@ namespace MediaItemsServer.Data
         }
 
         private IList<UserRole> Roles => _dbContext.Roles;
+
+        public IList<UserRole> GetAll(Expression<Func<UserRole, bool>> filter = null)
+        {
+            return filter != null ? Roles.Where(filter.Compile()).ToList() : Roles;
+        }
 
         public IList<UserRole> GetRolesForUser(string userName)
         {

@@ -14,7 +14,6 @@ namespace MediaItemsServer.Middleware
         public Task InvokeAsync(HttpContext httpContext)
         {
             httpContext.Response.Headers[HeaderNames.AccessControlAllowOrigin] = "*";
-            httpContext.Response.Headers[HeaderNames.AccessControlAllowHeaders] = "*";
             httpContext.Response.Headers[HeaderNames.AccessControlAllowMethods] = "GET, POST, PUT, DELETE, OPTIONS";
             
             return _next(httpContext);
