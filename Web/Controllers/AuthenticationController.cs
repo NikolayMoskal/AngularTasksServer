@@ -32,7 +32,7 @@ namespace MediaItemsServer.Controllers
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.Name)
+                new Claim(ClaimTypes.NameIdentifier, user.Name)
             };
             claims.AddRange(_roleService.GetRolesForUser(user.Name).Select(x => new Claim(ClaimTypes.Role, x.RoleName)));
 
@@ -68,7 +68,7 @@ namespace MediaItemsServer.Controllers
             };
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, registerModel.UserName)
+                new Claim(ClaimTypes.NameIdentifier, registerModel.UserName)
             };
             claims.AddRange(registerModel.RoleList.Select(x => new Claim(ClaimTypes.Role, x)));
 

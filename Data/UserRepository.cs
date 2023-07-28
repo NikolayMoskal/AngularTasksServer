@@ -7,15 +7,13 @@ namespace MediaItemsServer.Data
     {
         private static readonly object Lock = new();
         private readonly DbContext _dbContext;
-        private readonly IRoleRepository _roleRepository;
 
-        public UserRepository(DbContext dbContext, IRoleRepository roleService)
+        public UserRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
-            _roleRepository = roleService;
         }
 
-        private IList<User> Users => _dbContext.Users;
+        private List<User> Users => _dbContext.Users;
 
         public User Get(string userName)
         {
@@ -39,7 +37,7 @@ namespace MediaItemsServer.Data
             {
                 if (Users.Any(x => x.Name.Equals(user.Name, StringComparison.InvariantCultureIgnoreCase)))
                 {
-                    Users.ToList().RemoveAll(x => x.Name.Equals(user.Name, StringComparison.InvariantCultureIgnoreCase));
+                    Users.RemoveAll(x => x.Name.Equals(user.Name, StringComparison.InvariantCultureIgnoreCase));
                 }
 
                 AddUser(user);
@@ -67,7 +65,7 @@ namespace MediaItemsServer.Data
             {
                 if (Users.Any(x => x.Name == userName))
                 {
-                    Users.ToList().RemoveAll(x => x.Name == userName);
+                    Users.RemoveAll(x => x.Name == userName);
                 }
             }
         }

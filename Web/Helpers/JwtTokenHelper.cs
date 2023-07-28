@@ -9,7 +9,7 @@ namespace MediaItemsServer.Helpers
 {
     public static class JwtTokenHelper
     {
-        public static readonly int BearerTokenLifetimeSeconds = 2 * 60;
+        public static readonly int BearerTokenLifetimeSeconds = 10 * 60;
         public static readonly int RefreshTokenLifetimeDays = 1;
         public static readonly string Issuer = "AngularTasks";
         public static readonly string Audience = "AngularTasks";
